@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">fr.airweb.news </string>
+
+    <!--menu search-->
+    <string name="search_title">search</string>
+    <string name="view_contact">Contactez-Nous</string>
+
+
+</resources>
