@@ -12,9 +12,8 @@ import android.transition.TransitionManager
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.Menu
-import android.widget.LinearLayout
-import android.widget.PopupWindow
-import android.widget.Toast
+import android.view.View
+import android.widget.*
 import com.example.myapplication.R
 import com.example.myapplication.compagnionObjectClass.Lists
 import com.example.myapplication.sqlite.DB_news
@@ -53,6 +52,29 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.first_screen, menu)
         return super.onCreateOptionsMenu(menu)
+    }
+
+    //todo spinner to choice type
+    private fun choiceType(){
+        val adapter = ArrayAdapter.createFromResource(this, R.array.type_news, android.R.layout.simple_spinner_item)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                val item = adapter.getItem(position)
+
+                val fragTypeSelect = fragmentManager.findFragmentById(R.id.list_news_fragment) as FirstScreenFragment
+                // todo all type
+
+                //todo other type
+            }
+
+        }
     }
 
     /*

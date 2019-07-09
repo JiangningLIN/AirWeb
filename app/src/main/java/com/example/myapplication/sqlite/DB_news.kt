@@ -8,7 +8,7 @@ import org.jetbrains.anko.db.insert
  * Created by Jiangning LIN on 09/07/2019.
  */
 class DB_news {
-    //todo insert to dbNews from list
+    //insert to dbNews from list
     fun insert(db: DBNews, list: List<News>){
         for (i in 0 until list.size){
             db.use {
@@ -32,7 +32,7 @@ class DB_news {
         return cursor.getInt(0) == 0
     }
 
-    //todo delete table
+    //delete table
     fun delete(db: DBNews){
         db.use {
             delete(DBNews.TABLE_NEWS)
