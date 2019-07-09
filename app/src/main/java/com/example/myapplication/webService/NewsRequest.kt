@@ -2,12 +2,16 @@ package com.example.myapplication.webService
 
 import com.example.myapplication.compagnionObjectClass.Lists
 import com.example.myapplication.dataClass.News
+import com.example.myapplication.sqlite.DBNews
+import com.example.myapplication.sqlite.DB_news
 import org.json.JSONObject
 
 /**
  * Created by Jiangning LIN on 08/07/2019.
  */
 class NewRequest {
+    private val dB_news = DB_news()
+
     //Get information of new
     private fun getAll(response: String?): List<News>{
         val json =  arrayListOf<News>()
@@ -31,12 +35,13 @@ class NewRequest {
     }
 
     // run to get
-    fun run(url: String) {
+    fun run(db: DBNews, url: String) {
         HttpTask{
             if(it == null) return@HttpTask
             else{
                 println("it:"+ it)
                 val news = getAll(it)
+                dB_news.insert(db, news)
                 Lists.listNews.addAll(news)
                 println("list: "+ Lists.listNews)
             }

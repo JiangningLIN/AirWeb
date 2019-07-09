@@ -5,5 +5,8 @@
     <string name="search_title">search</string>
     <string name="view_contact">Contactez-Nous</string>
 
+    <!--popup window-->
+    <string name="popup_text">Chargement en cours, veuillez patienter.</string>
+
 
 </resources>
