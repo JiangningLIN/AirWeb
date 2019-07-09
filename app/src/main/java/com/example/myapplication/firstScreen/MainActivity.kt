@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import com.example.myapplication.R
+import com.example.myapplication.compagnionObjectClass.Lists
 import com.example.myapplication.webService.NewRequest
 
 class MainActivity : AppCompatActivity() {
@@ -13,13 +14,9 @@ class MainActivity : AppCompatActivity() {
     private val newsRequest = NewRequest()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        newsRequest.run("https://airweb-demo.airweb.fr/psg/psg.json")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-        newsRequest.run("https://airweb-demo.airweb.fr/psg/psg.json")
-
-
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
