@@ -18,5 +18,12 @@
         <item>trier par: titre</item>
     </string-array>
 
+    <!--contact-->
+    <string name="title_contact">Airweb - Facilitateur de mobilité</string>
+    <string name="contact_name_company">Airweb</string>
+    <string name="contact_call">Appelez-nous</string>
+    <string name="contact_mail">Ecrivez-Nous</string>
+    <string name="contact_map">Contactez-nous</string>
+
 
 </resources>

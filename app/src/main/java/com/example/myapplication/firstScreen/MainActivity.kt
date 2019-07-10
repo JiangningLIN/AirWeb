@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.fragment_news.*
 import org.jetbrains.anko.toast
 import android.support.v7.widget.SearchView
 import android.view.MenuItem
+import com.example.myapplication.contact.ContactActivity
 import com.example.myapplication.secondScreen.SecondActivity
 import com.example.myapplication.secondScreen.SecondScreenFragment
 import org.jetbrains.anko.startActivityForResult
@@ -119,11 +120,11 @@ class MainActivity : AppCompatActivity(), FirstScreenFragment.Listener  {
     //todo go to page contact
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-           /* R.id.view_contact ->{
+           R.id.view_contact ->{
                 val intent = Intent(this, ContactActivity::class.java)
                 intent.putExtra("contact", 2)
                 startActivity(intent)
-            }*/
+            }
         }
         return super.onOptionsItemSelected(item)
     }

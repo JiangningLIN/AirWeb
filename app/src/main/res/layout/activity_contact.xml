@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="18dp"
+                    android:paddingTop="18dp"
+                    android:text="@string/contact_name_company"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="25sp"
+                    android:textStyle="bold" />
+
+            <Button
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/contact_call"
+                    android:layout_marginTop="35dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="@string/contact_call"
+                    android:textSize="18dp"
+                    android:textStyle="bold|italic"
+                    android:paddingLeft="35dp"
+                    android:drawableLeft="@drawable/ic_call_black_24db"/>
+
+            <Button
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/contact_mail"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="@string/contact_mail"
+                    android:textSize="18dp"
+                    android:textStyle="bold|italic"
+                    android:paddingLeft="35dp"
+                    android:drawableLeft="@drawable/ic_mail_outline_black_24dp"/>
+
+            <Button
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/contact_map"
+                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorAccent"
+                    android:text="@string/contact_map"
+                    android:textSize="18dp"
+                    android:textStyle="bold|italic"
+                    android:paddingLeft="35dp"
+                    android:drawableLeft="@drawable/ic_public_black_24dp"/>
+        </LinearLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
