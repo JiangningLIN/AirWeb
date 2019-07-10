@@ -25,18 +25,31 @@ class ContactActivity:AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact)
-        //todo call us
+        //call us
         contact_call.setOnClickListener {
             checkPermissionCall()
             val number = "+33 1 76 61 65 10"
             makeCall(number)
         }
-        //todo send mail
+        //send mail
+        contact_mail.setOnClickListener {
+            val mail = "contact@airweb.fr"
+            sendMail(arrayOf(mail))
+        }
 
         //map
         contact_map.setOnClickListener {
             val intent = Intent(this, MapActivity::class.java)
             intent.putExtra("map", 3)
+            startActivity(intent)
+        }
+    }
+
+    private fun sendMail(to:Array<String>) {
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse("mailto:")
+        intent.putExtra(Intent.EXTRA_EMAIL, to)
+        if (intent.resolveActivity(this.packageManager) != null) {
             startActivity(intent)
         }
     }
