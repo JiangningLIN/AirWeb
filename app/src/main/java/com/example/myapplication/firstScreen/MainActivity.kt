@@ -16,14 +16,26 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_news.*
 import org.jetbrains.anko.toast
 import android.support.v7.widget.SearchView
+import com.example.myapplication.secondScreen.SecondActivity
+import com.example.myapplication.secondScreen.SecondScreenFragment
+import org.jetbrains.anko.startActivityForResult
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), FirstScreenFragment.Listener  {
 
     private val newsRequest     = NewRequest()
     private val net             = Net()
     private val dB_news         = DB_news()
 
-    lateinit var popupWindow: PopupWindow
+    //lateinit var popupWindow: PopupWindow
+
+    override fun onNewsSelection(id: Long) {
+        val fragDetail = fragmentManager.findFragmentById(R.id.frag_news_detail) as SecondScreenFragment?
+        if (fragDetail != null){
+            fragDetail.showDetail(id)
+        }else{
+            startActivityForResult<SecondActivity>(1, SecondActivity.EXTRA_NEWS_ID to id)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (dB_news.isExist(dbNews))

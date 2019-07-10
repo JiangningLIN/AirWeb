@@ -21,7 +21,7 @@ import java.net.URL
 /**
  * Created by Jiangning LIN on 08/07/2019.
  */
-class NewsRecyclerAdapter(val list: MutableList<News>): RecyclerView.Adapter<NewsRecyclerAdapter.NewsViewHolder>() {
+class NewsRecyclerAdapter(val list: MutableList<News>, val listener: (News)->Unit): RecyclerView.Adapter<NewsRecyclerAdapter.NewsViewHolder>() {
 
     inner class NewsViewHolder(view: View): RecyclerView.ViewHolder(view){
         val title: TextView     = view.findViewById(R.id.title)
@@ -42,6 +42,10 @@ class NewsRecyclerAdapter(val list: MutableList<News>): RecyclerView.Adapter<New
 
 
         holder.content.text = list[position]?.content
+
+        //listener
+        holder.itemView.setOnClickListener { listener(list[position]) }
+        holder.itemView.id = list[position]?.id.toInt()
     }
 
     class GetImageFromURL(val imageView: ImageView): AsyncTask<String, Void, Bitmap>(){

@@ -103,4 +103,38 @@ class DB_news {
         }
         return list
     }
+
+    fun getNewsToShow(db: DBNews, id: Long): News{
+        var news = News(-1, "", "","","","","")
+        db.use {
+            select(DBNews.TABLE_NEWS,
+                DBNews.COLUMN_NEWS_ID,
+                DBNews.COLUMN_NEWS_TYPE,
+                DBNews.COLUMN_NEWS_DATE,
+                DBNews.COLUMN_NEWS_TITLE,
+                DBNews.COLUMN_NEWS_PICTURE,
+                DBNews.COLUMN_NEWS_CONTENT,
+                DBNews.COLUMN_NEWS_DATEFORMATED)
+                .whereArgs("${DBNews.COLUMN_NEWS_ID} = {id}", "id" to id)
+                .exec {
+                    if (count == 0){
+                        val sb = "No news"
+                        news = News(-1, sb, sb, sb, sb, sb,sb)
+                    }else{
+                        for (row in asMapSequence()){
+                            news = News(
+                                row[DBNews.COLUMN_NEWS_ID] as Long,
+                                row[DBNews.COLUMN_NEWS_TYPE] as String,
+                                row[DBNews.COLUMN_NEWS_DATE] as String,
+                                row[DBNews.COLUMN_NEWS_TITLE] as String,
+                                row[DBNews.COLUMN_NEWS_PICTURE] as String,
+                                row[DBNews.COLUMN_NEWS_CONTENT] as String,
+                                row[DBNews.COLUMN_NEWS_DATEFORMATED] as String
+                            )
+                        }
+                    }
+                }
+        }
+        return news
+    }
 }
