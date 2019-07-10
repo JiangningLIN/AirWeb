@@ -45,4 +45,27 @@ class FirstScreenFragment: Fragment() {
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
     }
+    //load all news and sort by date
+    fun loadListNewsSortByDate() {
+        if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        Lists.listNews.addAll(dB_news.getAllNews(activity.dbNews))
+        // sort
+        Lists.listNews.sortWith(compareByDescending { it.date })
+        Lists.listNews.forEach { println("id: "+it.id + ",date:" + it.date) }
+
+        rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+    }
+
+    // load all news and sort by title
+    fun loadListNewsSortByTitle() {
+        if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        Lists.listNews.addAll(dB_news.getAllNews(activity.dbNews))
+        // sort
+        Lists.listNews.sortWith(compareBy { it.title.toLowerCase() })
+        Lists.listNews.forEach { println("id: "+it.id + ",title:" + it.title) }
+
+        rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+    }
 }

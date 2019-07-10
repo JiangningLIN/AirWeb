@@ -1,21 +1,12 @@
 package com.example.myapplication.firstScreen
 
-import android.app.AlertDialog
-import android.app.DownloadManager
-import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.transition.Slide
-import android.transition.TransitionManager
-import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.widget.*
 import com.example.myapplication.R
-import com.example.myapplication.compagnionObjectClass.Lists
 import com.example.myapplication.sqlite.DB_news
 import com.example.myapplication.sqlite.dbNews
 import com.example.myapplication.webService.Net
@@ -70,9 +61,15 @@ class MainActivity : AppCompatActivity() {
                 val fragTypeSelect = fragmentManager.findFragmentById(R.id.list_news_fragment) as FirstScreenFragment
                 // all type
                 if (item.toString() == "Tous") fragTypeSelect.loadListNews()
-                //other type
+                //other type (hot, news, actualité)
                 else if (item.toString() == "hot" || item.toString() == "news" || item.toString() == "actualité")
                     fragTypeSelect.loadListNewsWithType(item.toString())
+                //other type (Sort by date)
+                else if (item.toString() == "trier par: date")
+                    fragTypeSelect.loadListNewsSortByDate()
+                //other type (Sort by title)
+                else if (item.toString() == "trier par: titre")
+                    fragTypeSelect.loadListNewsSortByTitle()
             }
 
         }
