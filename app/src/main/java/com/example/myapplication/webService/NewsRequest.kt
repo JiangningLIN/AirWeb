@@ -21,7 +21,7 @@ class NewRequest {
         for (i in 0..jsonData.length() - 1){
             val mjsonObject = JSONObject(jsonData[i].toString())
             json.add(News(
-                mjsonObject.getInt("nid"),
+                mjsonObject.getLong("nid"),
                 mjsonObject.getString("type"),
                 mjsonObject.getString("date"),
                 mjsonObject.getString("title"),
@@ -42,8 +42,6 @@ class NewRequest {
                 println("it:"+ it)
                 val news = getAll(it)
                 dB_news.insert(db, news)
-                Lists.listNews.addAll(news)
-                println("list: "+ Lists.listNews)
             }
         }.execute("POST", url)
     }

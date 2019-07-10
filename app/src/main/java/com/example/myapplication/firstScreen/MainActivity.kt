@@ -31,17 +31,16 @@ class MainActivity : AppCompatActivity() {
     lateinit var popupWindow: PopupWindow
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        if (dB_news.isExist(dbNews)){
+        if (dB_news.isExist(dbNews))
             dB_news.delete(dbNews)
-        }
         if (net.connect(this)) {
             newsRequest.run(dbNews, "https://airweb-demo.airweb.fr/psg/psg.json")
-            println("db:" + dB_news.isExist(dbNews))
         }
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        choiceType()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -54,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    //todo spinner to choice type
+    //spinner to choice type
     private fun choiceType(){
         val adapter = ArrayAdapter.createFromResource(this, R.array.type_news, android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
@@ -69,9 +68,11 @@ class MainActivity : AppCompatActivity() {
                 val item = adapter.getItem(position)
 
                 val fragTypeSelect = fragmentManager.findFragmentById(R.id.list_news_fragment) as FirstScreenFragment
-                // todo all type
-
-                //todo other type
+                // all type
+                if (item.toString() == "Tous") fragTypeSelect.loadListNews()
+                //other type
+                else if (item.toString() == "hot" || item.toString() == "news" || item.toString() == "actualité")
+                    fragTypeSelect.loadListNewsWithType(item.toString())
             }
 
         }
