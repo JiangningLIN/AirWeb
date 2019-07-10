@@ -31,41 +31,53 @@ class FirstScreenFragment: Fragment() {
     //load all news
     fun loadListNews() {
         if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        if (Lists.searchNews.isNotEmpty()) Lists.searchNews.clear()
+
         Lists.listNews.addAll(dB_news.getAllNews(activity.dbNews))
-        println("list fragment: " + Lists.listNews)
+        Lists.searchNews.addAll(Lists.listNews)
+
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews)
     }
     //load all news selected with same type
     fun loadListNewsWithType(type: String) {
         if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        if (Lists.searchNews.isNotEmpty()) Lists.searchNews.clear()
+
         Lists.listNews.addAll(dB_news.getAllNewsSammeType(activity.dbNews, type))
+        Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews)
     }
     //load all news and sort by date
     fun loadListNewsSortByDate() {
         if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        if (Lists.searchNews.isNotEmpty()) Lists.searchNews.clear()
+
         Lists.listNews.addAll(dB_news.getAllNews(activity.dbNews))
         // sort
         Lists.listNews.sortWith(compareByDescending { it.date })
         Lists.listNews.forEach { println("id: "+it.id + ",date:" + it.date) }
+        Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews)
     }
 
     // load all news and sort by title
     fun loadListNewsSortByTitle() {
         if (Lists.listNews.isNotEmpty()) Lists.listNews.clear()
+        if (Lists.searchNews.isNotEmpty()) Lists.searchNews.clear()
+
         Lists.listNews.addAll(dB_news.getAllNews(activity.dbNews))
         // sort
         Lists.listNews.sortWith(compareBy { it.title.toLowerCase() })
         Lists.listNews.forEach { println("id: "+it.id + ",title:" + it.title) }
+        Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.listNews)
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews)
     }
 }

@@ -7,11 +7,15 @@ import android.view.Menu
 import android.view.View
 import android.widget.*
 import com.example.myapplication.R
+import com.example.myapplication.compagnionObjectClass.Lists
 import com.example.myapplication.sqlite.DB_news
 import com.example.myapplication.sqlite.dbNews
 import com.example.myapplication.webService.Net
 import com.example.myapplication.webService.NewRequest
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_news.*
+import org.jetbrains.anko.toast
+import android.support.v7.widget.SearchView
 
 class MainActivity : AppCompatActivity() {
 
@@ -41,6 +45,36 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.first_screen, menu)
+
+        //search bar
+        val searchItem = menu!!.findItem(R.id.search)
+        if (searchItem != null){
+            val searchView = searchItem.actionView as SearchView
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+                override fun onQueryTextSubmit(newText: String?): Boolean {
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    if (newText!!.isNotEmpty()){
+                        Lists.searchNews.clear()
+                        val search = newText.toLowerCase()
+                        Lists.listNews.forEach {
+                            if (it.title.toLowerCase().contains(search)){
+                                Lists.searchNews.add(it)
+                            }
+                        }
+                        rv_list_news.adapter.notifyDataSetChanged()
+                    }else{
+                        Lists.searchNews.clear()
+                        Lists.searchNews.addAll(Lists.listNews)
+                        rv_list_news.adapter.notifyDataSetChanged()
+                    }
+                    return true
+                }
+
+            })
+        }
         return super.onCreateOptionsMenu(menu)
     }
 

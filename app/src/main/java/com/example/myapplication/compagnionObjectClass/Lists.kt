@@ -7,6 +7,7 @@ import com.example.myapplication.dataClass.News
  */
 class Lists {
     companion object {
-        val listNews = arrayListOf<News>()
+        val listNews    = arrayListOf<News>()
+        val searchNews  = arrayListOf<News>()
     }
 }
