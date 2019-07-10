@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_news.*
 import org.jetbrains.anko.toast
 import android.support.v7.widget.SearchView
+import android.view.MenuItem
 import com.example.myapplication.secondScreen.SecondActivity
 import com.example.myapplication.secondScreen.SecondScreenFragment
 import org.jetbrains.anko.startActivityForResult
@@ -38,9 +39,9 @@ class MainActivity : AppCompatActivity(), FirstScreenFragment.Listener  {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        if (dB_news.isExist(dbNews))
-            dB_news.delete(dbNews)
         if (net.connect(this)) {
+            if (dB_news.isExist(dbNews))
+                dB_news.delete(dbNews)
             newsRequest.run(dbNews, "https://airweb-demo.airweb.fr/psg/psg.json")
         }
 
@@ -50,11 +51,6 @@ class MainActivity : AppCompatActivity(), FirstScreenFragment.Listener  {
         choiceType()
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        //val fragList = fragmentManager.findFragmentById(R.id.list_news_fragment) as FirstScreenFragment
-        //fragList.loadListNews()
-    }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.first_screen, menu)
 
@@ -120,7 +116,17 @@ class MainActivity : AppCompatActivity(), FirstScreenFragment.Listener  {
 
         }
     }
-
+    //todo go to page contact
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+           /* R.id.view_contact ->{
+                val intent = Intent(this, ContactActivity::class.java)
+                intent.putExtra("contact", 2)
+                startActivity(intent)
+            }*/
+        }
+        return super.onOptionsItemSelected(item)
+    }
     /*
     //open window of popup (dialog)
     private fun popupView() {

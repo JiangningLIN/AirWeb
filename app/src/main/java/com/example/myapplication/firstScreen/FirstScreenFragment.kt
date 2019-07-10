@@ -59,7 +59,7 @@ class FirstScreenFragment: Fragment(){
 
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews){
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews,activity){
             showNewsDetail(it.id)
         }
     }
@@ -72,7 +72,7 @@ class FirstScreenFragment: Fragment(){
         Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews){
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews, activity){
             showNewsDetail(it.id)
         }
     }
@@ -88,7 +88,7 @@ class FirstScreenFragment: Fragment(){
         Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews){
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews, activity){
             showNewsDetail(it.id)
         }
     }
@@ -105,7 +105,7 @@ class FirstScreenFragment: Fragment(){
         Lists.searchNews.addAll(Lists.listNews)
 
         rv_list_news.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews){
+        rv_list_news.adapter = NewsRecyclerAdapter(Lists.searchNews, activity){
             showNewsDetail(it.id)
         }
     }
